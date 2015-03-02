@@ -2,7 +2,10 @@
 			<files />
 			<hidden>
 				<index>99</index>
-			</hidden>
+        <plugintemplate>
+          <![CDATA[/DesktopModules/NBright/NBrightBuyCartReview/Themes/config/default/pluginsdetail.html]]>
+        </plugintemplate>
+      </hidden>
 			<textbox>
 				<ctrl>
 					<![CDATA[cartreview]]>
@@ -23,17 +26,19 @@
 					<![CDATA[]]>
 				</help>
 				<roles>
-					<![CDATA[Manager,Aministrators]]>
+					<![CDATA[Manager,Administrators]]>
 				</roles>
 				<description>
 					<![CDATA[]]>
 				</description>
 				<assembly>
-					<![CDATA[]]>
+					<![CDATA[NBrightBuyCartReview]]>
 				</assembly>
 				<namespaceclass>
-					<![CDATA[]]>
+					<![CDATA[Nevoweb.DNN.NBrightBuyCartReview.Components.Scheduler]]>
 				</namespaceclass>
+        <daysforzero>2</daysforzero>
+        <daysfornormal>90</daysfornormal>        
 			</textbox>
 			<checkbox>
 				<hidden>
@@ -44,8 +49,8 @@
 				</active>
 			</checkbox>
 			<dropdownlist>
-				<providertype selectedtext="UI_x0020_Only">
-					<![CDATA[01]]>
+				<providertype selectedtext="Scheduler">
+					<![CDATA[05]]>
 				</providertype>
 			</dropdownlist>
 			<checkboxlist />

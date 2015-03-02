@@ -126,4 +126,16 @@
   <data name="movetoordermsg.Text" xml:space="preserve">
     <value>Moved from Cart to Order</value>
   </data>
+  <data name="days.Text" xml:space="preserve">
+    <value>days (zero to turn off purge)</value>
+  </data>
+  <data name="daysfornormal.Text" xml:space="preserve">
+    <value>Purge days for carts</value>
+  </data>
+  <data name="daysforzero.Text" xml:space="preserve">
+    <value>Purge days for zero total carts</value>
+  </data>
+  <data name="testmode.Text" xml:space="preserve">
+    <value>Test Mode</value>
+  </data>
 </root>

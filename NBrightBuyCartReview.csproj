@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Scheduler.cs" />
     <Compile Include="Orders.ascx.cs">
       <DependentUpon>Orders.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -75,6 +76,7 @@
     </Content>
     <Content Include="pluginCartReview.xml" />
     <Content Include="Themes\config\default\datepicker.html" />
+    <Content Include="Themes\config\default\ordersauditlist.html" />
     <Content Include="Themes\config\default\ordersbody.html" />
     <Content Include="Themes\config\default\ordersdetail.html" />
     <Content Include="Themes\config\default\ordersdetailfooter.html" />
@@ -85,13 +87,13 @@
     <Content Include="Themes\config\default\ordersfooter.html" />
     <Content Include="Themes\config\default\ordersheader.html" />
     <Content Include="Themes\config\default\orderssearch.html" />
+    <Content Include="Themes\config\default\pluginsdetail.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_LocalResources\View.ascx.resx" />
     <EmbeddedResource Include="Themes\config\resx\CartReview.ascx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
+    <Folder Include="App_LocalResources\" />
     <Folder Include="render\" />
   </ItemGroup>
   <ItemGroup>
