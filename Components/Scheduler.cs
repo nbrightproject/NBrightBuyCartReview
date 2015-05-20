@@ -96,7 +96,7 @@ namespace Nevoweb.DNN.NBrightBuyCartReview.Components
                 var strDate = d.ToString("s");
                 var stmt = "";
                 stmt = "delete from " + dbOwner + "[" + objQual + "NBrightBuy] where PortalId = " + portalId.ToString("") + " and typecode = 'CART' and ModifiedDate < '" + strDate + "' ";
-                objCtrl.GetSqlxml(stmt);
+                objCtrl.ExecSql(stmt);
             }
         }
 
@@ -111,7 +111,7 @@ namespace Nevoweb.DNN.NBrightBuyCartReview.Components
                 var strDate = d.ToString("s");
                 var stmt = "";
                 stmt = "delete from " + dbOwner + "[" + objQual + "NBrightBuy] where PortalId = " + portalId.ToString("") + " and typecode = 'CART' and isnull([XMLdata].value('(genxml/appliedtotal)[1]','nvarchar(max)'),'0') = '0' and ModifiedDate < '" + strDate + "' ";
-                objCtrl.GetSqlxml(stmt);                
+                objCtrl.ExecSql(stmt);                
             }
         }
 
