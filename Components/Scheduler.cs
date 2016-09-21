@@ -13,33 +13,29 @@ namespace Nevoweb.DNN.NBrightBuyCartReview.Components
 {
     public class Scheduler : Nevoweb.DNN.NBrightBuy.Components.Interfaces.SchedulerInterface
     {
-        public override string DoWork()
+        public override string DoWork(int portalId)
         {
             try
             {
                 var objCtrl = new NBrightBuyController();
                 var rtnmsg = "";
-                // the sceduler runs at host level, we therefore need to loop through ALL portals to process data at a portal level.
-                var portalList = NBrightDNN.DnnUtils.GetAllPortals();
-                foreach (var portal in portalList)
-                {
                     // check if we have NBS in this portal by looking for default settings.
-                    var nbssetting = objCtrl.GetByGuidKey(portal.PortalID, -1, "SETTINGS", "NBrightBuySettings");
+                    var nbssetting = objCtrl.GetByGuidKey(portalId, -1, "SETTINGS", "NBrightBuySettings");
                     if (nbssetting != null)
                     {
-                        var pluginData = new PluginData(portal.PortalID); // get plugin data to see if this scheduler is active on this portal 
+                        var pluginData = new PluginData(portalId); // get plugin data to see if this scheduler is active on this portal 
                         var plugin = pluginData.GetPluginByCtrl("cartreview");
                         if (plugin != null && plugin.GetXmlPropertyBool("genxml/checkbox/active"))
                         {
                             var doscheduler = false;
                             // The NBS scheduler is normally set to run hourly, therefore if we only want a process to run daily we need the logic in this function.
                             // To do this we keep a last run flag on the sceduler settings
-                            var setting = objCtrl.GetByGuidKey(portal.PortalID, -1, "NBrightCartReview", "NBrightCartReviewScheduler");
+                            var setting = objCtrl.GetByGuidKey(portalId, -1, "NBrightCartReview", "NBrightCartReviewScheduler");
                             if (setting == null)
                             {
                                 setting = new NBrightInfo(true);
                                 setting.ItemID = -1;
-                                setting.PortalId = portal.PortalID;
+                                setting.PortalId = portalId;
                                 setting.TypeCode = "NBrightCartReview";
                                 setting.GUIDKey = "NBrightCartReviewScheduler";
                                 setting.ModuleId = -1;
@@ -64,24 +60,22 @@ namespace Nevoweb.DNN.NBrightBuyCartReview.Components
                                 var daysforzero = plugin.GetXmlPropertyInt("genxml/textbox/daysforzero");
                                 var daysfornormal = plugin.GetXmlPropertyInt("genxml/textbox/daysfornormal");
 
-                                PurgeZeroCarts(portal.PortalID, daysforzero);
-                                PurgeCarts(portal.PortalID, daysfornormal);
+                                PurgeZeroCarts(portalId, daysforzero);
+                                PurgeCarts(portalId, daysfornormal);
 
                                 setting.SetXmlProperty("genxml/lastrun", DateTime.Now.ToString("s"), TypeCode.DateTime);
                                 objCtrl.Update(setting);
-                                rtnmsg =  " - NBrightCartReviewScheduler OK ";
+                                rtnmsg =  " - NBrightCartReview  " + portalId + " OK ";
                             }
                             
                         }                        
                     }
 
-                }
-
                 return rtnmsg;
             }
             catch (Exception ex)
             {
-                return " - NBrightCartReviewScheduler FAIL: " + ex.ToString() + " : ";
+                return " - NBrightCartReview FAIL: " + ex.ToString() + " : ";
             }
         }
 
