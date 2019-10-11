@@ -252,6 +252,9 @@ namespace Nevoweb.DNN.NBrightBuyCartReview
                         obj.TypeCode = "ORDER";
                         ModCtrl.Update(obj);
                         var ordData = new OrderData(obj.ItemID);
+                        ordData.OrderStatus = "010";
+                        ordData.CreatedDate = DateTime.Now.ToString("O");
+                        ordData.OrderNumber = obj.ItemID.ToString();
                         ordData.AddAuditMessage(DnnUtils.GetLocalizedString("movetoordermsg.Text", "/DesktopModules/NBright/NBrightBuyCartReview/Themes/config/resx", Utils.GetCurrentCulture()), "msg", UserInfo.Username, "False");
                         ordData.Save();
                     }
